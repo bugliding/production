@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BUGS — Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">
+      <span class="logo-badge"><img src="images/logo.png" alt="Boston University Gliding and Soaring logo" /></span>
+    </a>
+    <nav class="main-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="support.html">Support Us</a>
+    </nav>
+  </header>
+
+  <!-- Hero / Our Mission -->
+  <section class="hero hero-alt">
+    <h1>About Us</h1>
+    <p style="max-width:620px;margin-top:18px;color:#fff;font-size:1.15rem;">
+      We are the Boston University Gliding and Soaring Club (BUGS), a student-led 
+      organization at Boston University. From designing styrofoam gliders to receiving 
+      flight instruction in our Stemme S6 self propelled glider, BUGS connects the academic 
+      pursuit of aviation with actual hands-on experience for students that extend far beyond 
+      the classroom.
+    </p>
+  </section>
+
+  <!-- Hero / Our Goal (reversed: text on the right) -->
+  <section class="hero reverse">
+    <h1>Our Goal</h1>
+    <p style="max-width:620px;margin-top:18px;color:#fff;font-size:1.15rem;">
+      This year, we are working towards providing scholarships for Boston University 
+      students to take discovery flights, where they will have the option to then pursue 
+      flight training and obtain their Private Pilot License - Glider (PPL-G) in our Stemme S6.
+    </p>
+  </section>
+
+  <!-- Quote + Join -->
+  <section class="section single-quote">
+    <blockquote class="quote">
+      "Join the next generation of aviators and soar the skies with us!"
+    </blockquote>
+    <div class="btn-redirects-wrap">
+      <a class="btn-redirects" href="https://join.bugliding.org/" target="_blank">Join BUGS!</a>
+    </div>
+  </section>
+  
+
+  <!-- scroll wheel: airplane moves up/down as user scrolls -->
+  <div class="scroll-track" aria-hidden="true">
+    <span class="plane"><img src="images/airplane_moveable.png"/></span>
+  </div>
+
+  <footer class="contact-footer">
+    Contact us! &nbsp;·&nbsp; <a href="mailto:terriergliding@gmail.com">terriergliding@gmail.com</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
