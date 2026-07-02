@@ -22,6 +22,8 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: none; /* Firefox: hide native scrollbar */
   -ms-overflow-style: none; /* IE/Edge */
+  background: var(--red-deep); /* fills overscroll gap at top (matches header) */
+  overscroll-behavior: none;
 }
 
 /* hide native scrollbar (Chrome/Safari) but keep scrolling */
@@ -37,6 +39,8 @@ body {
   color: var(--ink);
   background: var(--white);
   line-height: 1.6;
+  min-height: 100vh;
+  overscroll-behavior: none;
 }
 
 img {
@@ -176,6 +180,7 @@ section {
 }
 
 .hero.hero-alt h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
   text-shadow: 3px 5px 0 rgba(0, 0, 0, 0.35), 0 0 25px rgba(0, 0, 0, 0.25);
 }
 
@@ -184,16 +189,24 @@ section {
 }
 
 /* reversed hero: heading + text aligned to the right */
-.hero.reverse {
-  text-align: right;
+.hero.center {
+  text-align: center;
 }
 
-.hero.reverse h1 {
+/* Our Mission section gets its own background image */
+.hero.hero-mission {
+  background-image: linear-gradient(rgba(120, 20, 10, 0.4), rgba(120, 20, 10, 0.4)),
+    url("images/home/HWG_2414.jpg");
+}
+
+.hero.center h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
   text-shadow: 3px 5px 0 rgba(0, 0, 0, 0.35), 0 0 25px rgba(0, 0, 0, 0.25);
 }
 
-.hero.reverse p {
+.hero.center p {
   margin-left: auto;
+  margin-right: auto;
   text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.35), 0 0 25px rgba(0, 0, 0, 0.25);
 }
 
@@ -331,9 +344,380 @@ section {
 
 .page-title {
   text-align: center;
-  padding: 40px 20px 10px;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: var(--white);
+  background: var(--red-deep);
+  border-radius: 10px;
+  padding: 6px 18px;
+  width: fit-content;
+  max-width: calc(100% - 40px);
+  margin: clamp(24px, 4vw, 36px) auto clamp(8px, 1.5vw, 12px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  line-height: 1.2;
+}
+
+/* plain title — no pill background (Gallery page) */
+.page-title-plain {
   color: var(--red-deep);
+  background: none;
+  border-radius: 0;
+  padding: 40px 20px 10px;
+  box-shadow: none;
+  width: auto;
+  max-width: none;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+}
+
+/* ===== OUR GLIDER (info rows) ===== */
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 5vw, 70px);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 45px) clamp(20px, 6vw, 60px);
+  position: relative;
+  border-bottom: none; /* replaced by the full-width line below */
+}
+
+/* full-width divider line under an info-row (content stays centered) */
+.info-row::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  border-bottom: 3px solid var(--red-deep);
+}
+
+.info-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.info-row img {
+  flex: 0 0 45%;
+  width: 50%;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.info-row-photos {
+  flex: 0 0 58%;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+}
+
+.info-row-photos img {
+  flex: 1 1 50%;
+  width: auto;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.info-row.next-event img {
+  flex: 0 0 50%;
+  width: 50%;
+}
+
+.info-row .text {
+  flex: 1;
+  min-width: 0;
+}
+
+.info-row .text h2 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--red-deep);
+  margin-bottom: 12px;
+}
+
+.info-row .text p {
+  font-size: 1.05rem;
+  color: #2b2b2b;
+  margin-bottom: 10px;
+}
+
+.info-row .text ul {
+  margin: 10px 0 0 20px;
+  color: #2b2b2b;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* full-width red band for a highlighted info-row (content stays centered) */
+.glider-highlight {
+  background: var(--red);
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  isolation: isolate;
+}
+
+.glider-highlight::before {
+  display: none;
+}
+
+.glider-highlight::after {
+  display: none; /* no divider line on the red band */
+}
+
+.glider-highlight .text h2,
+.glider-highlight .text p,
+.glider-highlight .text ul,
+.glider-highlight .text li {
+  color: var(--white);
+}
+
+/* Our Glider page: deep red text on white background sections */
+.page-glider .info-row:not(.glider-highlight) .text p,
+.page-glider .info-row:not(.glider-highlight) .text ul,
+.page-glider .info-row:not(.glider-highlight) .text li {
+  color: var(--red-deep);
+}
+
+/* Our Glider page: tighter left/right margins */
+.page-glider .info-row {
+  max-width: none;
+  padding-left: clamp(48px, 20vw, 100px);
+  padding-right: clamp(48px, 20vw, 100px);
+}
+
+.page-glider .page-description {
+  padding-left: clamp(48px, 20vw, 100px);
+  padding-right: clamp(48px, 20vw, 100px);
+}
+
+/* ===== CURRENT EVENTS ===== */
+/* full-width red recap band with white text */
+.recap {
+  background: var(--red);
+  color: var(--white);
+  padding-top: clamp(16px, 2.5vw, 24px);
+  padding-bottom: clamp(12px, 2vw, 20px);
+  border-bottom: none;
+}
+
+/* no divider line inside the red recap band */
+.recap .info-row::after {
+  display: none;
+}
+
+/* Next Event: red heading and paragraph text */
+.next-event .text h2,
+.next-event .text p {
+  color: var(--red-deep);
+}
+
+.recap .info-row.recap-row {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(10px, 2vw, 16px) clamp(24px, 4vw, 48px) clamp(14px, 2vw, 20px);
+  padding-right: clamp(120px, 14vw, 170px); /* keep text clear of scroll glider */
+  gap: clamp(16px, 2.5vw, 28px);
+  align-items: center;
+}
+
+/* diagonal overlap: first photo in flow, second overlaps its bottom-right */
+.recap .recap-row .info-row-photos-diagonal {
+  display: block;
+  flex: 0 0 58%;
+  max-width: 680px;
+  position: relative;
+  padding-bottom: 27%;
+}
+
+.recap .recap-row .info-row-photos-diagonal img {
+  flex: none;
+  width: 72%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.recap .recap-row .info-row-photos-diagonal img:first-child {
+  position: relative;
+  display: block;
+  z-index: 1;
+}
+
+.recap .recap-row .info-row-photos-diagonal img:last-child {
+  position: absolute;
+  top: 38%;
+  left: 38%;
+  width: 72%;
+  z-index: 2;
+}
+
+.recap .recap-row .text {
+  flex: 1;
+  min-width: 0;
+  max-width: none;
+  margin-left: 60px;
+}
+
+.recap .page-title {
+  color: var(--red-deep);
+  background: var(--white);
+  margin: clamp(10px, 2vw, 16px) auto clamp(4px, 1vw, 8px);
+}
+
+.recap .info-row .text h2 {
+  color: var(--white);
+}
+
+.recap .info-row .text p {
+  color: var(--white);
+}
+
+.events {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(12px, 2vw, 20px) clamp(20px, 5vw, 40px) clamp(40px, 6vw, 70px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.event-card {
+  display: flex;
+  gap: 24px;
+  background: #fff;
+  border-left: 6px solid var(--red);
+  border-radius: 0 14px 14px 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 22px 26px;
+}
+
+.event-card .date {
+  flex: 0 0 120px;
+  font-weight: 700;
+  color: var(--red-deep);
+}
+
+.event-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.event-card .text p {
+  color: #555;
+}
+
+.section-title {
+  text-align: center;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--red-deep);
+  padding: clamp(50px, 8vw, 90px) 20px 4px;
+}
+
+.news-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: clamp(16px, 3vw, 30px) clamp(20px, 5vw, 40px) clamp(40px, 6vw, 70px);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+}
+
+.news-card {
+  background: #fff;
+  border-top: 4px solid var(--red);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 24px 20px;
+  aspect-ratio: 2 / 3;
+  display: block;
+}
+
+.news-card-link {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.news-card-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.news-card .news-date {
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+
+.news-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.news-card p {
+  color: #555;
+  font-size: 0.98rem;
+}
+
+@media (max-width: 760px) {
+  .info-row,
+  .info-row.reverse {
+    flex-direction: column;
+  }
+  .info-row img {
+    flex: none;
+    width: 100%;
+  }
+  .info-row-photos {
+    flex: none;
+    width: 100%;
+    flex-direction: column;
+  }
+  .recap .recap-row .info-row-photos-diagonal {
+    flex: none;
+    width: 100%;
+    max-width: none;
+    padding-bottom: 30%;
+  }
+  .recap .recap-row .info-row-photos-diagonal img:first-child {
+    width: 74%;
+  }
+  .recap .recap-row .info-row-photos-diagonal img:last-child {
+    top: 42%;
+    left: 36%;
+    width: 74%;
+  }
+  .recap .recap-row .text {
+    max-width: none;
+    padding-right: 0;
+    right: 32px;
+  }
+  .recap .info-row.recap-row {
+    padding-right: clamp(24px, 4vw, 48px);
+  }
+  .event-card {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 900px) {
+  .news-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .news-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 1000px) {
@@ -403,17 +787,18 @@ section {
   color: var(--white);
 }
 
-/* scroll airplane track on the right */
+/* scroll glider track on the right */
 .scroll-track {
   position: fixed;
   top: calc(var(--header-h) + 30px);
-  right: 26px;
+  right: 32px;
   bottom: 30px;
   width: 14px;
   background: var(--red-deep);
   border-radius: 20px;
   z-index: 90;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+  overflow: visible;
 }
 
 .scroll-track .plane {
@@ -424,16 +809,17 @@ section {
   transition: top 0.1s linear;
   filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.4));
   cursor: grab;
-  touch-action: none; 
+  touch-action: none;
 }
 
 .scroll-track .plane.dragging {
   cursor: grabbing;
-  transition: none; 
+  transition: none;
+  transform: translateX(-50%);
 }
 
 .scroll-track .plane img {
-  width: 67px;
+  width: 120px;
   max-width: none;
   height: auto;
   display: block;
@@ -452,6 +838,18 @@ section {
 
 .contact-footer a {
   color: var(--salmon);
+}
+
+.contact-footer .footer-icon {
+  width: 24px;
+  height: 20px;
+  max-width: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.contact-footer .footer-icon-linkedin {
+  width: 77px;
 }
 
 @media (max-width: 760px) {
