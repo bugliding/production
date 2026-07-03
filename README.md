@@ -1,3 +1,3 @@
 How to run:
-- Download the files
+- Clone the repo on your device
 - Run "open index.html"
