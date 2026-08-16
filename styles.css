@@ -493,6 +493,10 @@ section {
   min-width: 0;
 }
 
+.info-row.split-row .split-cols li + li {
+  margin-top: 14px;
+}
+
 .info-row.split-row .split-cols img {
   flex: 0 0 26%;
   width: 26%;
