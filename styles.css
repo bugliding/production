@@ -408,6 +408,11 @@ section {
   border-top: 3px solid var(--red-deep);
 }
 
+/* restores the divider on a red band, which otherwise hides its own ::after */
+.info-row.divider-bottom::after {
+  display: block;
+}
+
 .info-row.text-center .text {
   text-align: center;
 }
@@ -553,6 +558,11 @@ section {
   max-width: none;
   padding-left: clamp(48px, 20vw, 100px);
   padding-right: clamp(48px, 20vw, 100px);
+}
+
+/* the section above already supplies the standard divider line */
+.page-glider .donate-section {
+  border-top: none;
 }
 
 .page-glider .page-description {
